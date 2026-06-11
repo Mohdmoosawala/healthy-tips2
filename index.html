@@ -1,1 +1,788 @@
-<!DOCTYPE html><html><head><title>Healthy Tips</title></head><body><h1>Healthy Tips</h1></body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Healthy Tips - Transform Your Health Naturally</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;600;700&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #2d6a4f;
+    --green-light: #52b788;
+    --green-pale: #d8f3dc;
+    --cream: #f8f4ee;
+    --dark: #1b2d23;
+    --gray: #6b7c74;
+    --white: #ffffff;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'DM Sans', sans-serif;
+    background: var(--cream);
+    color: var(--dark);
+    min-height: 100vh;
+  }
+
+  /* NAV */
+  nav {
+    background: var(--white);
+    padding: 16px 24px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  }
+  .logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: var(--green);
+    text-decoration: none;
+  }
+  .nav-btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 9px 18px;
+    border-radius: 50px;
+    font-size: 0.82rem;
+    cursor: pointer;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    transition: background 0.2s;
+  }
+  .nav-btn:hover { background: var(--dark); }
+
+  /* HERO */
+  .hero {
+    background: linear-gradient(135deg, var(--green) 0%, #1b4332 100%);
+    color: white;
+    padding: 60px 24px 50px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.05);
+  }
+  .hero::after {
+    content: '';
+    position: absolute;
+    bottom: -40px; left: -40px;
+    width: 160px; height: 160px;
+    border-radius: 50%;
+    background: rgba(255,255,255,0.04);
+  }
+  .hero h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.4rem;
+    font-weight: 700;
+    line-height: 1.2;
+    margin-bottom: 12px;
+  }
+  .hero p {
+    font-size: 0.95rem;
+    opacity: 0.85;
+    max-width: 360px;
+    margin: 0 auto 24px;
+    line-height: 1.6;
+  }
+  .hero-badge {
+    display: inline-block;
+    background: rgba(255,255,255,0.15);
+    padding: 5px 14px;
+    border-radius: 50px;
+    font-size: 0.78rem;
+    margin-bottom: 20px;
+    letter-spacing: 0.05em;
+  }
+
+  /* SECTIONS */
+  section { padding: 40px 20px; }
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.7rem;
+    color: var(--green);
+    margin-bottom: 6px;
+  }
+  .section-sub {
+    font-size: 0.85rem;
+    color: var(--gray);
+    margin-bottom: 24px;
+  }
+
+  /* ARTICLES GRID */
+  .articles-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+  @media(min-width: 600px) {
+    .articles-grid { grid-template-columns: 1fr 1fr; }
+  }
+
+  .article-card {
+    background: var(--white);
+    border-radius: 16px;
+    overflow: hidden;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.06);
+    transition: transform 0.2s, box-shadow 0.2s;
+    cursor: pointer;
+  }
+  .article-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 28px rgba(0,0,0,0.12);
+  }
+  .card-emoji {
+    background: var(--green-pale);
+    padding: 20px;
+    font-size: 2rem;
+    text-align: center;
+  }
+  .card-body { padding: 16px; }
+  .card-tag {
+    font-size: 0.7rem;
+    color: var(--green-light);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+  .card-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.15rem;
+    font-weight: 600;
+    line-height: 1.3;
+    margin-bottom: 8px;
+    color: var(--dark);
+  }
+  .card-excerpt {
+    font-size: 0.82rem;
+    color: var(--gray);
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .card-date {
+    font-size: 0.72rem;
+    color: #bbb;
+  }
+
+  /* EMPTY STATE */
+  .empty-state {
+    text-align: center;
+    padding: 40px 20px;
+    color: var(--gray);
+  }
+  .empty-state .icon { font-size: 3rem; margin-bottom: 12px; }
+  .empty-state p { font-size: 0.9rem; line-height: 1.6; }
+
+  /* TOPICS */
+  .topics-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 12px;
+  }
+  .topic-card {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 18px 12px;
+    text-align: center;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    cursor: pointer;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .topic-card:hover { background: var(--green-pale); transform: translateY(-2px); }
+  .topic-card .t-icon { font-size: 1.6rem; margin-bottom: 6px; }
+  .topic-card .t-name { font-size: 0.75rem; font-weight: 500; color: var(--dark); }
+
+  /* TIPS */
+  .tips-list { display: flex; flex-direction: column; gap: 14px; }
+  .tip-item {
+    background: var(--white);
+    border-radius: 14px;
+    padding: 16px;
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+  }
+  .tip-num {
+    background: var(--green);
+    color: white;
+    width: 30px; height: 30px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 0.8rem;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+  .tip-text strong { font-size: 0.9rem; display: block; margin-bottom: 3px; color: var(--dark); }
+  .tip-text span { font-size: 0.8rem; color: var(--gray); line-height: 1.5; }
+
+  /* FOOTER */
+  footer {
+    background: var(--dark);
+    color: rgba(255,255,255,0.6);
+    text-align: center;
+    padding: 30px 20px;
+    font-size: 0.8rem;
+  }
+  footer .f-logo {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.3rem;
+    color: white;
+    margin-bottom: 8px;
+  }
+
+  /* ===== ADMIN MODAL ===== */
+  .modal-overlay {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,0.5);
+    z-index: 1000;
+    align-items: flex-end;
+    justify-content: center;
+  }
+  .modal-overlay.open { display: flex; }
+
+  .modal {
+    background: var(--white);
+    border-radius: 24px 24px 0 0;
+    padding: 28px 22px 40px;
+    width: 100%;
+    max-width: 560px;
+    max-height: 90vh;
+    overflow-y: auto;
+    animation: slideUp 0.3s ease;
+  }
+  @keyframes slideUp {
+    from { transform: translateY(100%); }
+    to { transform: translateY(0); }
+  }
+
+  .modal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 22px;
+  }
+  .modal-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.4rem;
+    color: var(--green);
+  }
+  .close-btn {
+    background: #f0f0f0;
+    border: none;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    font-size: 1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+
+  /* LOGIN FORM */
+  .login-form { display: flex; flex-direction: column; gap: 14px; }
+  .login-form input {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+  }
+  .login-form input:focus { border-color: var(--green); }
+  .login-hint {
+    font-size: 0.75rem;
+    color: var(--gray);
+    background: var(--green-pale);
+    border-radius: 8px;
+    padding: 10px 12px;
+    line-height: 1.5;
+  }
+
+  /* POST FORM */
+  .post-form { display: flex; flex-direction: column; gap: 14px; }
+  .post-form input, .post-form textarea, .post-form select {
+    border: 1.5px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 13px 16px;
+    font-size: 0.9rem;
+    font-family: 'DM Sans', sans-serif;
+    outline: none;
+    transition: border-color 0.2s;
+    width: 100%;
+  }
+  .post-form input:focus, .post-form textarea:focus, .post-form select:focus {
+    border-color: var(--green);
+  }
+  .post-form textarea { resize: vertical; min-height: 120px; }
+  .form-label {
+    font-size: 0.78rem;
+    font-weight: 500;
+    color: var(--gray);
+    margin-bottom: 4px;
+    display: block;
+  }
+  .form-group { display: flex; flex-direction: column; }
+
+  .submit-btn {
+    background: var(--green);
+    color: white;
+    border: none;
+    padding: 14px;
+    border-radius: 12px;
+    font-size: 0.95rem;
+    font-family: 'DM Sans', sans-serif;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s;
+  }
+  .submit-btn:hover { background: var(--dark); }
+
+  .success-msg {
+    background: var(--green-pale);
+    color: var(--green);
+    padding: 12px 16px;
+    border-radius: 10px;
+    font-size: 0.85rem;
+    text-align: center;
+    display: none;
+  }
+
+  /* ARTICLE DETAIL */
+  .article-detail {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: var(--cream);
+    z-index: 200;
+    overflow-y: auto;
+  }
+  .article-detail.open { display: block; }
+  .detail-header {
+    background: var(--green);
+    color: white;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+  .back-btn {
+    background: rgba(255,255,255,0.15);
+    border: none;
+    color: white;
+    width: 36px; height: 36px;
+    border-radius: 50%;
+    font-size: 1.1rem;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+  }
+  .detail-body { padding: 24px 20px; }
+  .detail-tag {
+    font-size: 0.75rem;
+    color: var(--green-light);
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+  }
+  .detail-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 1.8rem;
+    line-height: 1.2;
+    margin-bottom: 10px;
+    color: var(--dark);
+  }
+  .detail-date { font-size: 0.78rem; color: #aaa; margin-bottom: 20px; }
+  .detail-content {
+    font-size: 0.92rem;
+    line-height: 1.8;
+    color: #444;
+    white-space: pre-wrap;
+  }
+
+  /* ADMIN ARTICLES LIST */
+  .admin-articles { margin-top: 20px; }
+  .admin-article-item {
+    background: var(--cream);
+    border-radius: 10px;
+    padding: 12px 14px;
+    margin-bottom: 10px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .admin-article-item .title { font-size: 0.85rem; font-weight: 500; color: var(--dark); }
+  .delete-btn {
+    background: #fee2e2;
+    color: #dc2626;
+    border: none;
+    padding: 5px 12px;
+    border-radius: 6px;
+    font-size: 0.75rem;
+    cursor: pointer;
+  }
+
+  .tabs { display: flex; gap: 10px; margin-bottom: 20px; }
+  .tab-btn {
+    flex: 1;
+    padding: 10px;
+    border-radius: 10px;
+    border: 1.5px solid #e0e0e0;
+    background: white;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 0.82rem;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .tab-btn.active { background: var(--green); color: white; border-color: var(--green); }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a class="logo" href="#">🌿 Healthy Tips</a>
+  <button class="nav-btn" onclick="openAdmin()">✍️ Post Article</button>
+</nav>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-badge">🌿 Natural Health & Wellness</div>
+  <h1>Transform Your Health Naturally</h1>
+  <p>Simple, effective tips to live a healthier and happier life every day.</p>
+</div>
+
+<!-- TOPICS -->
+<section>
+  <div class="section-title">Browse Topics</div>
+  <div class="section-sub">Pick a topic to start your journey</div>
+  <div class="topics-grid">
+    <div class="topic-card"><div class="t-icon">🏋️</div><div class="t-name">Weight Loss</div></div>
+    <div class="topic-card"><div class="t-icon">🧠</div><div class="t-name">Brain Health</div></div>
+    <div class="topic-card"><div class="t-icon">💧</div><div class="t-name">Hydration</div></div>
+    <div class="topic-card"><div class="t-icon">🥗</div><div class="t-name">Nutrition</div></div>
+    <div class="topic-card"><div class="t-icon">😴</div><div class="t-name">Better Sleep</div></div>
+    <div class="topic-card"><div class="t-icon">🧘</div><div class="t-name">Stress Relief</div></div>
+  </div>
+</section>
+
+<!-- ARTICLES -->
+<section style="background: white; border-radius: 24px 24px 0 0; margin-top: -10px;">
+  <div class="section-title">Latest Articles</div>
+  <div class="section-sub">Fresh health tips just for you</div>
+  <div class="articles-grid" id="articlesGrid">
+    <!-- Default articles -->
+    <div class="article-card" onclick="openArticle('🥗','Nutrition','10 Foods That Boost Your Energy Naturally','Discover everyday foods that keep you energized without caffeine or supplements. Simple swaps, big results.\n\nEating the right foods can transform your energy levels throughout the day. Instead of reaching for caffeine, try these natural powerhouses:\n\n1. Bananas — Natural sugars + potassium for quick energy\n2. Oats — Slow-releasing carbs for sustained fuel\n3. Almonds — Healthy fats and magnesium\n4. Spinach — Iron-rich, fights fatigue\n5. Sweet potatoes — Complex carbs + vitamin B6\n6. Eggs — Complete protein and B vitamins\n7. Dark chocolate — Natural caffeine alternative\n8. Chia seeds — Omega-3s and fiber\n9. Greek yogurt — Protein + probiotics\n10. Green tea — Gentle caffeine + L-theanine\n\nIncorporate these into your daily meals and feel the difference within a week!','May 20, 2026')">
+      <div class="card-emoji">🥗</div>
+      <div class="card-body">
+        <div class="card-tag">Nutrition</div>
+        <div class="card-title">10 Foods That Boost Your Energy Naturally</div>
+        <div class="card-excerpt">Discover everyday foods that keep you energized without caffeine or supplements.</div>
+        <div class="card-date">May 20, 2026</div>
+      </div>
+    </div>
+    <div class="article-card" onclick="openArticle('🏃','Fitness','5-Minute Morning Exercises for All Ages','Start your day right with these quick exercises. No gym needed — just 5 minutes and your body weight.\n\nMorning movement sets the tone for the entire day. Here is a simple 5-minute routine:\n\n⏱ Minute 1 — Neck rolls and arm circles (warm up)\n⏱ Minute 2 — 10 jumping jacks + 10 high knees\n⏱ Minute 3 — 10 squats\n⏱ Minute 4 — 10 push-ups (or wall push-ups)\n⏱ Minute 5 — Deep breathing and stretching\n\nDo this every morning for 30 days and notice:\n✅ More energy throughout the day\n✅ Better mood and focus\n✅ Improved strength and flexibility\n\nNo equipment needed. No gym membership. Just 5 minutes of commitment!','May 18, 2026')">
+      <div class="card-emoji">🏃</div>
+      <div class="card-body">
+        <div class="card-tag">Fitness</div>
+        <div class="card-title">5-Minute Morning Exercises for All Ages</div>
+        <div class="card-excerpt">Start your day right with these quick exercises. No gym needed — just 5 minutes.</div>
+        <div class="card-date">May 18, 2026</div>
+      </div>
+    </div>
+    <div class="article-card" onclick="openArticle('😴','Sleep','How to Get Deep Sleep Every Night','Simple bedtime habits that help you fall asleep faster and wake up feeling refreshed.\n\nQuality sleep is the foundation of good health. Here are science-backed tips for deep, restful sleep:\n\n🌙 Before Bed:\n— Put your phone away 30 minutes before sleeping\n— Keep your room cool (18–20°C is ideal)\n— Try 4-7-8 breathing: inhale 4 sec, hold 7 sec, exhale 8 sec\n— Avoid heavy meals 2 hours before bed\n— Dim the lights an hour before sleep\n\n🛏 Sleep Habits:\n— Wake up at the same time every day (even weekends)\n— Use your bed only for sleeping\n— Block out noise and light\n\n☀️ During the Day:\n— Get morning sunlight within 1 hour of waking\n— Exercise regularly (but not too close to bedtime)\n— Limit caffeine after 2 PM\n\nConsistent sleep = better energy, mood, weight, and immune system!','May 15, 2026')">
+      <div class="card-emoji">😴</div>
+      <div class="card-body">
+        <div class="card-tag">Sleep</div>
+        <div class="card-title">How to Get Deep Sleep Every Night</div>
+        <div class="card-excerpt">Simple bedtime habits that help you fall asleep faster and wake up refreshed.</div>
+        <div class="card-date">May 15, 2026</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DAILY TIPS -->
+<section>
+  <div class="section-title">Daily Health Tips</div>
+  <div class="section-sub">Small habits, big changes</div>
+  <div class="tips-list">
+    <div class="tip-item"><div class="tip-num">1</div><div class="tip-text"><strong>Drink 8 Glasses of Water</strong><span>Start your morning with a glass of water before anything else.</span></div></div>
+    <div class="tip-item"><div class="tip-num">2</div><div class="tip-text"><strong>Walk 30 Minutes Daily</strong><span>A simple walk reduces stress, improves mood, and boosts cardiovascular health.</span></div></div>
+    <div class="tip-item"><div class="tip-num">3</div><div class="tip-text"><strong>Eat More Greens</strong><span>Add one serving of vegetables to every meal. Greens are packed with vitamins.</span></div></div>
+    <div class="tip-item"><div class="tip-num">4</div><div class="tip-text"><strong>Sleep 7–8 Hours</strong><span>Quality sleep repairs your body and sharpens your mind. Set a consistent bedtime.</span></div></div>
+    <div class="tip-item"><div class="tip-num">5</div><div class="tip-text"><strong>Limit Screen Time Before Bed</strong><span>Put your phone away 30 minutes before sleeping. Blue light disrupts sleep.</span></div></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="f-logo">🌿 Healthy Tips</div>
+  <p>Your trusted source for natural health and wellness advice.</p>
+  <p style="margin-top:8px;">© 2026 Healthy Tips. All rights reserved.</p>
+</footer>
+
+<!-- ARTICLE DETAIL VIEW -->
+<div class="article-detail" id="articleDetail">
+  <div class="detail-header">
+    <button class="back-btn" onclick="closeArticle()">←</button>
+    <span style="font-size:0.85rem; opacity:0.85;">Healthy Tips</span>
+  </div>
+  <div class="detail-body">
+    <div class="detail-tag" id="detailTag"></div>
+    <div class="detail-title" id="detailTitle"></div>
+    <div class="detail-date" id="detailDate"></div>
+    <div class="detail-content" id="detailContent"></div>
+  </div>
+</div>
+
+<!-- ADMIN MODAL -->
+<div class="modal-overlay" id="adminModal">
+  <div class="modal">
+    <div class="modal-header">
+      <div class="modal-title">✍️ Article Manager</div>
+      <button class="close-btn" onclick="closeAdmin()">✕</button>
+    </div>
+
+    <!-- LOGIN -->
+    <div id="loginSection">
+      <div class="login-hint">🔐 Enter your admin password to post articles.</div>
+      <br>
+      <div class="login-form">
+        <input type="password" id="passwordInput" placeholder="Enter admin password" onkeydown="if(event.key==='Enter') checkLogin()">
+        <button class="submit-btn" onclick="checkLogin()">Login →</button>
+      </div>
+      <p id="loginError" style="color:#dc2626; font-size:0.8rem; margin-top:10px; display:none;">❌ Wrong password. Try again.</p>
+    </div>
+
+    <!-- POST PANEL -->
+    <div id="postSection" style="display:none;">
+      <div class="tabs">
+        <button class="tab-btn active" id="tab1" onclick="switchTab(1)">📝 New Article</button>
+        <button class="tab-btn" id="tab2" onclick="switchTab(2)">📋 My Articles</button>
+      </div>
+
+      <!-- NEW ARTICLE -->
+      <div id="newArticleTab">
+        <div class="post-form">
+          <div class="form-group">
+            <label class="form-label">Article Title *</label>
+            <input type="text" id="artTitle" placeholder="e.g. 5 Benefits of Morning Walk">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Category *</label>
+            <select id="artCategory">
+              <option value="">Select category...</option>
+              <option value="Nutrition">🥗 Nutrition</option>
+              <option value="Fitness">🏃 Fitness</option>
+              <option value="Sleep">😴 Sleep</option>
+              <option value="Weight Loss">🏋️ Weight Loss</option>
+              <option value="Brain Health">🧠 Brain Health</option>
+              <option value="Hydration">💧 Hydration</option>
+              <option value="Stress Relief">🧘 Stress Relief</option>
+              <option value="General Health">🌿 General Health</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Short Description *</label>
+            <input type="text" id="artExcerpt" placeholder="One line summary of your article">
+          </div>
+          <div class="form-group">
+            <label class="form-label">Full Article Content *</label>
+            <textarea id="artContent" placeholder="Write your full article here..."></textarea>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Emoji Icon</label>
+            <input type="text" id="artEmoji" placeholder="e.g. 🌿 💪 🥑" maxlength="4">
+          </div>
+          <button class="submit-btn" onclick="postArticle()">🚀 Publish Article</button>
+          <div class="success-msg" id="successMsg">✅ Article published successfully!</div>
+        </div>
+      </div>
+
+      <!-- MY ARTICLES -->
+      <div id="myArticlesTab" style="display:none;">
+        <div class="admin-articles" id="adminArticlesList"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // ====== CONFIG ======
+  const ADMIN_PASSWORD = "healthy123";
+  const STORAGE_KEY = "healthyTipsArticles";
+
+  // ====== DATA ======
+  function getArticles() {
+    try { return JSON.parse(localStorage.getItem(STORAGE_KEY)) || []; }
+    catch { return []; }
+  }
+  function saveArticles(articles) {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(articles));
+  }
+
+  // ====== RENDER ======
+  function renderArticles() {
+    const articles = getArticles();
+    const grid = document.getElementById('articlesGrid');
+    const categoryIcons = {
+      'Nutrition':'🥗','Fitness':'🏃','Sleep':'😴','Weight Loss':'🏋️',
+      'Brain Health':'🧠','Hydration':'💧','Stress Relief':'🧘','General Health':'🌿'
+    };
+
+    articles.forEach((a, i) => {
+      const card = document.createElement('div');
+      card.className = 'article-card';
+      const emoji = a.emoji || categoryIcons[a.category] || '🌿';
+      card.onclick = () => openArticle(emoji, a.category, a.title, a.content, a.date);
+      card.innerHTML = `
+        <div class="card-emoji">${emoji}</div>
+        <div class="card-body">
+          <div class="card-tag">${a.category}</div>
+          <div class="card-title">${a.title}</div>
+          <div class="card-excerpt">${a.excerpt}</div>
+          <div class="card-date">${a.date}</div>
+        </div>`;
+      grid.insertBefore(card, grid.firstChild);
+    });
+  }
+
+  // ====== ARTICLE DETAIL ======
+  function openArticle(emoji, tag, title, content, date) {
+    document.getElementById('detailTag').textContent = emoji + ' ' + tag;
+    document.getElementById('detailTitle').textContent = title;
+    document.getElementById('detailContent').textContent = content;
+    document.getElementById('detailDate').textContent = date;
+    document.getElementById('articleDetail').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeArticle() {
+    document.getElementById('articleDetail').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  // ====== ADMIN ======
+  function openAdmin() {
+    document.getElementById('adminModal').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeAdmin() {
+    document.getElementById('adminModal').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+
+  function checkLogin() {
+    const pass = document.getElementById('passwordInput').value;
+    if (pass === ADMIN_PASSWORD) {
+      document.getElementById('loginSection').style.display = 'none';
+      document.getElementById('postSection').style.display = 'block';
+    } else {
+      document.getElementById('loginError').style.display = 'block';
+    }
+  }
+
+  function switchTab(n) {
+    document.getElementById('newArticleTab').style.display = n===1 ? 'block' : 'none';
+    document.getElementById('myArticlesTab').style.display = n===2 ? 'block' : 'none';
+    document.getElementById('tab1').classList.toggle('active', n===1);
+    document.getElementById('tab2').classList.toggle('active', n===2);
+    if (n===2) renderAdminList();
+  }
+
+  function postArticle() {
+    const title = document.getElementById('artTitle').value.trim();
+    const category = document.getElementById('artCategory').value;
+    const excerpt = document.getElementById('artExcerpt').value.trim();
+    const content = document.getElementById('artContent').value.trim();
+    const emoji = document.getElementById('artEmoji').value.trim();
+
+    if (!title || !category || !excerpt || !content) {
+      alert('Please fill all required fields!');
+      return;
+    }
+
+    const articles = getArticles();
+    const now = new Date();
+    const date = now.toLocaleDateString('en-US', { month:'long', day:'numeric', year:'numeric' });
+
+    articles.push({ title, category, excerpt, content, emoji, date, id: Date.now() });
+    saveArticles(articles);
+
+    document.getElementById('artTitle').value = '';
+    document.getElementById('artCategory').value = '';
+    document.getElementById('artExcerpt').value = '';
+    document.getElementById('artContent').value = '';
+    document.getElementById('artEmoji').value = '';
+
+    const msg = document.getElementById('successMsg');
+    msg.style.display = 'block';
+    setTimeout(() => msg.style.display = 'none', 3000);
+
+    // Add card to grid instantly
+    const grid = document.getElementById('articlesGrid');
+    const categoryIcons = {
+      'Nutrition':'🥗','Fitness':'🏃','Sleep':'😴','Weight Loss':'🏋️',
+      'Brain Health':'🧠','Hydration':'💧','Stress Relief':'🧘','General Health':'🌿'
+    };
+    const e = emoji || categoryIcons[category] || '🌿';
+    const card = document.createElement('div');
+    card.className = 'article-card';
+    card.onclick = () => openArticle(e, category, title, content, date);
+    card.innerHTML = `
+      <div class="card-emoji">${e}</div>
+      <div class="card-body">
+        <div class="card-tag">${category}</div>
+        <div class="card-title">${title}</div>
+        <div class="card-excerpt">${excerpt}</div>
+        <div class="card-date">${date}</div>
+      </div>`;
+    grid.insertBefore(card, grid.firstChild);
+  }
+
+  function renderAdminList() {
+    const articles = getArticles();
+    const list = document.getElementById('adminArticlesList');
+    if (articles.length === 0) {
+      list.innerHTML = '<p style="color:#aaa; font-size:0.85rem; text-align:center; padding:20px;">No articles posted yet.</p>';
+      return;
+    }
+    list.innerHTML = articles.map((a, i) => `
+      <div class="admin-article-item">
+        <div class="title">${a.title}</div>
+        <button class="delete-btn" onclick="deleteArticle(${a.id})">Delete</button>
+      </div>`).join('');
+  }
+
+  function deleteArticle(id) {
+    if (!confirm('Delete this article?')) return;
+    let articles = getArticles().filter(a => a.id !== id);
+    saveArticles(articles);
+    renderAdminList();
+    location.reload();
+  }
+
+  // Close modal on overlay click
+  document.getElementById('adminModal').addEventListener('click', function(e) {
+    if (e.target === this) closeAdmin();
+  });
+
+  // Init
+  renderArticles();
+</script>
+</body>
+</html>
